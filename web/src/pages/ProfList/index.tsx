@@ -2,6 +2,8 @@ import React from 'react';
 
 import './styles.css'
 import PageHeader from '../../components/PageHeader';
+import ProfItem from '../../components/ProfItem';
+
 
 function ProfList(){
     return(
@@ -22,6 +24,14 @@ function ProfList(){
                 </div>
             </form>
         </PageHeader>
+
+        <main>
+            <ProfItem />
+            <ProfItem />
+            <ProfItem />
+            <ProfItem />
+            <ProfItem /> 
+        </main>
     </div>
     )
 }
