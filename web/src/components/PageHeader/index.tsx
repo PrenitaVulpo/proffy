@@ -8,6 +8,7 @@ import './styles.css'
 
 interface PageHeaderProps{
     text: String;
+    description?: String;
 }
 
 const PageHeader: React.FunctionComponent<PageHeaderProps> = (properties) => {
@@ -21,6 +22,7 @@ const PageHeader: React.FunctionComponent<PageHeaderProps> = (properties) => {
             </div>
             <div className="header-content">
                 <strong>{properties.text}</strong>
+                {properties.description ? <p>{properties.description}</p> : null}
                 {properties.children}
             </div>
         </header>

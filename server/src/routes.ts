@@ -6,7 +6,7 @@ const connectionsControler = new ConnectionsControler();
 const routes = express.Router();
 
 routes.get('/', (request, response) => {
-    return response.json({message: 'Hello World'})
+    return response.json({message: 'kkjj'})
 })
 
 routes.post('/classes', classesControler.create);
