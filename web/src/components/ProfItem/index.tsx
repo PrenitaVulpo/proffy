@@ -2,31 +2,42 @@ import React from 'react';
 import iconZap from '../../assets/images/icons/whatsapp.svg';
 import './style.css';
 
-const ProfItem = () => {
+export interface Prof{
+    avatar: string;
+    bio: string;
+    cost: number;
+    id: number;
+    name: string;
+    subject: string;
+    user_id: number;
+    whatsapp: string;
+};
+
+interface ProfItemProps{
+    prof: Prof;
+}
+
+const ProfItem: React.FC<ProfItemProps> = ({prof}) => {
     return(
         <article className="teacher-item">
             <header>
-                <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F4e%2F02%2Fce%2F4e02ce4ae0a68a2b118ecc757e138c8c.jpg&sp=1600222054T8e0c563918c8ddc97d4c54e66b00e79315b39ab59e408953a22eb5609da9804b" 
-                alt="Pikachu"/>
+                <img src={prof.avatar} 
+                alt={prof.name}/>
                 <div>
-                    <strong>Pikachu</strong>
-                    <span>Física</span>
+                    <strong>{prof.name}</strong>
+                    <span>{prof.subject}</span>
                 </div>
             </header>
-            <p>
-                Pikapi
-                <br/><br/>
-                pikapikaa
-            </p>
+            <p>{prof.bio}</p>
             <footer>
                 <p>
                     Preço/hora
-                    <strong>R$ 75,00</strong>
+                    <strong>R$ {prof.cost}</strong>
                 </p>
-                <button type="button">
+                <a href={'https://wa.me/'+prof.whatsapp}>
                     <img src={iconZap} alt="Whatsapp"/>
                     Entrar em contato
-                </button>
+                </a>
                 </footer>
         </article>
     )

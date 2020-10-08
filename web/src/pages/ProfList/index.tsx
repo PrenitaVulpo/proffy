@@ -2,23 +2,34 @@ import React, { FormEvent, useState } from 'react';
 
 import './styles.css'
 import PageHeader from '../../components/PageHeader';
-import ProfItem from '../../components/ProfItem';
+import ProfItem, {Prof} from '../../components/ProfItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
+import api from '../../services/api';
+
+
 
 function ProfList(){
+    const [teachers, setTeachers] = useState([]);
+
     const [subject, setSubject] = useState('');
     const [week_day, setWeek_day] = useState('');
     const [time, setTime] = useState('');
 
-    function searchProf(e: FormEvent){
+    async function searchProf(e: FormEvent){
         e.preventDefault();
 
-    console.log(
-        subject,
-        week_day,
-        time
-    )
+        const response = await api.get('classes',{
+            params:{
+                subject,
+                week_day,
+                time
+            }
+        });
+
+        setTeachers(
+            response.data
+        )
     }
 
     return(
@@ -63,11 +74,9 @@ function ProfList(){
         </PageHeader>
 
         <main>
-            <ProfItem />
-            <ProfItem />
-            <ProfItem />
-            <ProfItem />
-            <ProfItem /> 
+            {teachers.map((teacher: Prof) =>{
+                return <ProfItem key={teacher.id} prof={teacher}/>
+            })}
         </main>
     </div>
     )
